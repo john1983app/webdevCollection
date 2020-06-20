@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title></title>
+    <script>
+    	//写入内容  
+			function WriteDemo(){     
+        var fso = new ActiveXObject("Scripting.FileSystemObject");  
+        var f = fso.OpenTextFile("c:\\0.txt", 2, true, 0);  
+        f.Write("Hello world 123!");     
+        f.Close();  
+}  
+    
+    
+    </script>>
+  </head>
+  <body><button onclick="WriteDemo()">
+    create
+    </button> 
+    <p><br>
+    </p>
+  </body>
+</html>

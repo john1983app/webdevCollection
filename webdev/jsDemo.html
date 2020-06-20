@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=Big5">
+  </head>
+  <body>
+    <p>Click "Try it". Wait 3 seconds, and the page will alert "Hello".</p>
+    <button onclick="setTimeout(myFunction,3000)">Try it</button>
+    <!---button onclick="setInterval(cntSeconds,10000)">StartClock</button---> <button
+      onclick="GetMyside()">Getlocation</button> <button onclick="demoforeach()">demoforeach</button>
+    <button onclick="create()">create new html</button>
+    <script>
+     var a=['1','2','3','4','5']
+		 var result =[]
+     var file = document.getElementById("filePicker").files[0];
+		 var date = new Date(file.lastModified);
+       println("You selected the file " + file.name + " which was modified on " + date.toDateString() + ".");
+
+...
+
+// Generate a file with a specific last modified date
+
+var d = new Date(2013, 12, 5, 16, 23, 45, 600);
+var generatedFile = new File(["Rough Draft ...."], "Draft1.txt", {type: "text/plain", lastModified: d})
+
+...
+function demoforeach(){
+     		for(var v in a){
+          	result.push(Math.floor(Math.random()*11))
+        		alert('you try to toss '+ v +' time is ' + result[v] );
+        }
+  			alert('Totally, our tosses are '+ result);
+  			
+     }
+function GetMyside(){
+  navigator.geolocation.getCurrentPosition(function(APA){
+    	var latitude = APA.coords.latitude;
+    	var longitude = APA.coords.longitude;
+    	alert('Your position is ' + latitude + "," +longitude);
+  });
+}
+function myFunction() {
+  alert('Hello You click me!!');
+}
+var eSec = setInterval
+function cntSeconds(){
+  var eSec = 0;
+  eSec++;
+  alert('erase' + (eSec * 10) + 'Seconds.');
+
+}
+function create() {
+    var content = "<html><head><title>動態生成的HTML文檔</title></head>";
+    content += "<body><font size='2'><b>這個文檔的內容是利用document對象動態生成的</b></font>";
+    content += "</body></html>";
+    
+    var newWindow = window.open(); 
+    newWindow.document.write(content);   
+    newWindow.document.close();  
+}
+</script> </body>
+</html>

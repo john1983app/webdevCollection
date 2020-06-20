@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title> Micomo </title>
+  </head>
+  <body>
+    <div>
+      <p> 活動倒計時<strong id="endtime"></strong>秒！ </p>
+      <input id="btn" value="立即購買" disabled="disabled" onclick="func()" type="button">
+      </div>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+            //倒計時30秒
+            var i = 30;
+            function remainTime() {
+                if (i > 0) {
+                    document.getElementById("endtime").innerHTML = i--;
+                    setTimeout("remainTime()", 1000);
+
+                }
+                if (i == 0) {
+                    $("p").text("活動開始");
+                    $("p").css("background-color", "yellow");
+                    //倒計時結束，按鈕狀態改為可用
+                    document.getElementById("btn").disabled = false;
+                }
+
+            }
+            remainTime();
+
+            //點擊按鈕觸發的方法
+            function func() {
+                alert("恭喜你搶到一個月餅");
+            }
+        </script>
+  </body>
+</html>

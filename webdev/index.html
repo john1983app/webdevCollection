@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>index</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("p").mouseenter(function(){
+          $(this).slideUp(500);
+        });
+         $("p").mouseleave(function(){
+          $(this).slideDown(500);
+        });
+      });
+		</script>
+    <style>
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      li {
+        float: left;
+      }
+
+			li a, .dropbtn {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover, .dropdown:hover .dropbtn {
+        background-color: gray;
+      }
+
+      li.dropdown {
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown-content a:hover {background-color: #f1f1f1;}
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      img{
+        	position: absolute;
+        	opacity:1;
+          z-index: -1;
+      }
+      body {
+      }
+      p{
+        background-color: #ffff99;
+        box-shadow:10px 10px 20px 5px grey;  
+        height: 30px;
+        width: 80px;
+      }
+      p:hover{
+        background-color: lightgreen;
+        box-shadow:10px 10px 20px 5px grey;  
+        height: 30px;
+        width: 80px;
+      }
+      iframe {
+      		height:100%;
+        	width:100%;
+        	border:none
+      }
+    </style>
+  </head>
+  <body style="   height: 357px;"> <img src="01c805e83a6e430275bcba5f03e8295609a3c75ca4.jpg"
+      height="100%" width="100%">
+    <header>
+      <div style="text-align: center; width: 1369px;">
+        <h1><span style="color: #05ffff;"><span style="font-family: ®ßcÑÔ;box-shadow:10px 10px 30px 5px white;">
+              <span style="color: #e6e6b8;">葉伯的足跡</span></span></span></h1>
+      </div>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#home">主頁</a></li>
+        <li><a href="#news">關於我</a></li>
+        <li class="dropdown"> <a href="javascript:void(0)" class="dropbtn">網頁程式</a>
+          <div class="dropdown-content"><a href="getCam.html">取得cam影像</a><a href="#">相
+              片瀏覽</a><a href="#">貸 款試算</a> <a href="#">類比時鐘</a> <a href="#">萬年
+              曆</a><a href="#">聊 天室</a></div>
+        </li>
+        <li class="dropdown"> <a href="javascript:void(0)" class="dropbtn">MCU專
+            案</a>
+          <div class="dropdown-content"> <a href="#">待定1</a> <a href="#">待定2</a>
+            <a href="#">待定3</a> </div>
+        </li>
+        <li class="dropdown"> <a href="javascript:void(0)" class="dropbtn">Python
+            區</a>
+          <div class="dropdown-content"> <a href="#">wxpython使用</a> <a href="#">繪
+              圖</a></div>
+        </li>
+      </ul>
+    </nav>
+    <iframe src="mainpage.html"></iframe>
+  </body>
+</html>
