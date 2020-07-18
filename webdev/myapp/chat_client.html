@@ -1,0 +1,105 @@
+<!doctype html>
+<html ng-app="angApp">
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body ng-controller="MainCtrl as ctrl">
+    <ul id="messages">
+        <li ng-repeat="item in ctrl.msgList">
+            <span ng-bind="item.message"></span>
+        </li>  
+    </ul>
+    <form action="">
+      <input ng-model="ctrl.msg" id="m" autocomplete="off" /><button ng-click="ctrl.msgSend()">Send</button>
+    </form>
+    <div ng>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+			<!--script>
+			  $(function () {
+			    var socket = io();
+			    $('form').submit(function(){
+			      socket.emit('chat message', $('#m').val());
+			      $('#m').val('');
+			      return false;
+			    });
+			  });
+			</script-->
+			<script>/*
+				function socketCom($rootScope){
+					var socket = io();
+					this.tx = function(eventName,data,callback){
+						socket.emit(eventName,function(){
+							var args = argumnets;
+							$rootScope.$apply(function(){
+          			if(callback){
+           				callback.apply(socket, args);
+          			}
+        			});
+						})
+					}
+					this.rx = function(eventName,callback){
+						socket.on(eventName,function(){
+							var args = argumnets;
+							$rootScope.$apply(function(){
+          			callback.apply(socket, args);
+       				});
+						})
+					}
+				}
+				angular.module('angApp',[])
+				.service('socketCom',[socketCom])
+				.controller('MainCtrl',['socketCom',function(socketCom){
+					var 
+				}])
+				*/
+				angular.module('angApp',[])
+                .controller('MainCtrl',['socket',function(socket){
+					var self = this;
+                    var num  = 1;
+                    self.msgList = [{id:0,message:'start'}];
+                    self.msgSend = function(){
+                        //self.msgList.push({id:num,message:'message:'+self.msg});
+                        socket.emit('chat_message',self.msg);
+                    }
+                    socket.on ('server_echo',function(){
+                        self.msgList.push({id:num,message:'message:'+self.msg});
+                    });
+                }])
+				.factory('socket', function ($rootScope) {
+                  var socket = io();
+                  return {
+                    on: function (eventName,callback){
+                      socket.on(eventName, function () {  
+                        var args = arguments;
+                        $rootScope.$apply(function () {
+                          callback.apply(socket, args);
+                        });
+                      });
+                    },
+                    emit: function (eventName,data){ //,data, callback) {
+                      socket.emit(eventName, data);/*, function () {
+                        var args = arguments;
+                        $rootScope.$apply(function () {
+                          if (callback) {
+                            callback.apply(socket, args);
+                          }
+                        });
+                      })*/
+                    }
+                  };
+                });
+        </script>>			
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>複利計算</title>
+<script>
+function CalculateTotalFund(){
+    var iOrigFund = document.getElementById("originfund");
+    var fRat = document.getElementById("rates");
+    var iiv = document.getElementById("interval");
+    var TotalFund,i,a = 0;
+    var Rate = parseFloat(fRat.value);
+    var OriginFund = parseFloat(iOrigFund.value);
+    var Interval =parseInt(iiv.value);
+    for(i=Interval;i>0;i--){
+	a += Math.pow(Rate+1,i);
+    }
+    TotalFund = OriginFund * a;
+    document.write("你的本金是:"+OriginFund);
+    document.write("你的利率是:"+ Rate);
+    document.write("你的本利和是:"+TotalFund);
+}
+</script>
+<style>
+
+</style>
+</head>
+<body>
+<h1>複利計算</h1>
+<form>
+<p>
+    <label>本金:<input type="number" id="originfund" required></label>
+</p>
+<p>
+    <label>年利率:<input type="number" id="rates" required></label>
+</p>
+<p>
+    <label>幾年:<input type="number" id="interval" required></label>
+</p>
+<p>
+    <input type="reset"><input type="button" value="計算" onClick="CalculateTotalFund()"> 
+</p>
+</form>
+<p>
+    
+</p>
+<p>
+<span id="clock"></span>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html ng-app="angApp">
+  <head>
+    <title>FileWrite</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+			label{ font: 12px;color:aqua}
+      form { background: #000; padding: 3px; position: absolute; left: 410px; top: 1px; width: 40% }
+      form input { border: 0; padding: 10px; width: 10%; margin-right: .5%; }
+      form button { width: 25%; background: rgb(130, 224, 255); border: none; padding: 10px }
+      .botton01 { width: 25%; background: rgb(255, 150, 255); border: none; padding: 10px;margin:2px}
+      #messages { list-style-type: none; margin: 5; padding: 0;width: 40% }
+      #messages li { padding: 5px 10px;width: 80% }
+      #messages li:nth-child(odd) { background: #ede; }
+    </style>
+  </head>
+  <body ng-controller="MainCtrl as ctrl">
+    <ul id="messages">
+    	<li ng-repeat="list in ctrl.msglist">
+    		<span ng-bind="list.message"></span>
+    	</li>
+    </ul>
+    <form action="">
+			<label>Variable Name:</label>
+			<input type="text" ng-model= "ctrl.varname" autocomplete="off">
+			<label>Loop Times:</label>
+			<input type="text" ng-model= "ctrl.looptimes" autocomplete="off">
+      <button ng-click="ctrl.codeWrite()">CodeWrite</button>
+      <button class="botton01" ng-click="ctrl.naviDownloadFile()">open file</button>
+      <button class="botton01" ng-click="ctrl.msgsubmit01()">close file</button>
+    </form>
+    <!--script src="/node_modules/socket.io/socket.io.js"></script-->
+    <!--script src="https://code.jquery.com/jquery-1.11.1.js"></script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js"></script>
+    <script>
+		//var app = require('angular');
+		
+    	app.module('angApp',[])
+    	.controller('MainCtrl',['$http',function($http){
+					var self = this;
+					var sentdata = {
+						              variable:self.varname,
+													loop:self.looptimes
+					               }
+					self.num = 0;
+					self.msglist = [
+														{id:1, message:'start'},
+														{id:2, message:'start'}
+												 ];
+					//write message into file
+					self.codeWrite = function(){
+						$http.post('/api/codegen',sentdata).then(function(response){
+							  
+						});
+						self.msglist.push({id:self.num+1,message:'U Write data'});
+					};	
+					//open file 
+					self.naviDownloadFile = function(){
+						self.msglist.push({id:self.num+1,message:'U open file'});
+						
+					};	
+					//close file 
+					self.msgsubmit01 = function(){
+						self.msglist.push({id:self.num+1,message:'U Close file'});
+						
+					};	
+				}]);
+				/*
+				app.factory('socket',[function($scope){
+				  var socket = io.connect();
+				  return {
+				  	sck:function(){
+				  		return socket;	
+				  	},
+				    on: function (eventName, callback) {
+				      socket.on(eventName, callback);
+				      //{  
+				      //  var args = arguments;
+				      // $scope.$apply(function () {
+				      //    callback.apply(socket, args);
+				      //  })
+				      //
+				    },
+				    emit: function (eventName, data) {
+				      socket.emit(eventName, data);
+				      //, function () {
+				      //  var args = arguments;
+				      // $scope.$apply(function () {
+				      //    if (callback) {
+				      //      callback.apply(socket, args);
+				      //    }
+				      //  });
+				      //});
+				      
+				    }
+				  }
+				}]);
+				*/
+    </script>
+    
+			<!--script>
+			  $(function () {
+			    var socket = io();
+			    $('form').submit(function(){
+			      socket.emit('chat message', $('#m').val());
+			      $('#m').val('');
+			      return false;
+			    });
+			  });
+			</script-->
+				
+  </body>
+</html>
