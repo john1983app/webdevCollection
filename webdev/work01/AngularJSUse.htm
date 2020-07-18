@@ -1,0 +1,22 @@
+<!--DOCTYPE html-->
+<html ng-app="notesApp">
+<head><title>Note Apps</title></head>
+<body ng-controller="mainctrl as ctrl">
+    <form ng-submit="ctrl.submit()">
+        <input type="text" ng-model="ctrl.user.username">
+        <input type="password" ng-model="ctrl.user.pwd">
+        <input type="submit" value="Submit">
+    </form>
+    You key in is {{ctrl.app}}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
+</script>
+<script type="text/javascript">
+    angular.module('notesApp',[]).controller('mainctrl',[function(){
+        var self = this;
+        self.submit = function(){
+             self.app = self.user.username
+        };
+    }]);    
+</script>
+</body>
+</html>

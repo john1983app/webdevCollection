@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DupMass</title>
+<script>
+function CreateMassData(){
+    var HowManyTimes = document.getElementById("HowManyTimes");
+    var sDesiredString = document.getElementById("DesiredString").value;
+    
+    var i,a = 0;
+    
+    var iHowManyTimes = parseInt(HowManyTimes.value);
+    for(i=0;i<iHowManyTimes;i++)
+    {
+        document.write(sDesiredString+"_"+i+'<br>'); 
+    }
+    
+    
+}
+</script>
+<style>
+
+</style>
+</head>
+<body>
+<h1>DupliMass</h1>
+<form>
+<p>
+    <label>HowManyTimes<input type="number" id="HowManyTimes" required></label>
+</p>
+<p>
+    <label>DesiredString<input type="text" id="DesiredString" required></label>
+</p>
+<p>
+    <label>´X¦~:<input type="number" id="interval" required></label>
+</p>
+<p>
+    <input type="reset"><input type="button" value="Create" onClick="CreateMassData()"> 
+</p>
+</form>
+<p>
+    
+</p>
+<p>
+<span id="clock"></span>
+</body>
+</html>
